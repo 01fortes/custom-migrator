@@ -1,0 +1,59 @@
+spring:
+  datasource:
+#    type: org.springframework.jdbc.datasource.DriverManagerDataSource
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DATABASE:notification_center}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:data.sql
+      continue-on-error: false
+server:
+  port: 13100
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: readinessState, db
+        liveness:
+          include: livenessState
+  endpoints:
+    web:
+      base-path: /sys
+      exposure:
+        include: health, metrics, info, prometheus
+  server:
+    port: ${METRICS_PORT:13110}
+  health:
+    diskspace:
+      enabled: true
+  metrics:
+    web:
+      client:
+        request:
+          autotime:
+            percentilesHistogram: true
+      server:
+        request:
+          autotime:
+            percentilesHistogram: true
+
+application:
+  migration:
+    start-at: "${CUSTOM_MIGRATION_START_AT:17:45}"
+    suspend-at: "${CUSTOM_MIGRATION_SUSPEND_AT:17:44}"
+    window-step: "${CUSTOM_MIGRATION_WINDOW_STEP:6 hours}"
+    since-date: "${CUSTOM_MIGRATION_SINCE_DATE:2024-05-09T07:05:59.835684}"

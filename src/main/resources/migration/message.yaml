@@ -1,0 +1,32 @@
+table:
+  name: message
+  shadow-name: message_shadow
+  pk:
+    columns:
+      - id
+    name: message_pkey
+    shadow-name: message_shadow_pkey
+
+  foreign-keys:
+    - column: channel
+      foreign-table: message_channel
+      foreign-column: name
+    - column: gateway
+      foreign-table: message_gateway
+      foreign-column: name
+
+  indexes:
+    - name: idx_id
+      shadow-name: idx_id_shadow
+      columns: [ id ]
+    - name: message_created_at_idx
+      shadow-name: message_shadow_created_at_idx
+      columns: [ created_at ]
+
+
+procedure:
+  name: procedure_message_to_shadow
+
+trigger:
+  name: trigger_message_to_shadow
+  procedure: procedure_message_to_shadow
