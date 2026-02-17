@@ -11,7 +11,7 @@ spring:
       schema-locations: classpath:data.sql
       continue-on-error: false
 server:
-  port: 13100
+  port: 8080
 
 springdoc:
   api-docs:
