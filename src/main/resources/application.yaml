@@ -36,7 +36,7 @@ management:
       exposure:
         include: health, metrics, info, prometheus
   server:
-    port: ${METRICS_PORT:13110}
+    port: ${METRICS_PORT:8081}
   health:
     diskspace:
       enabled: true

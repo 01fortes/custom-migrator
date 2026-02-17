@@ -124,9 +124,9 @@ http://localhost:8080/swagger-ui.html
 
 ### Мониторинг и метрики
 
-- Health: `http://localhost:13110/sys/health`
-- Prometheus: `http://localhost:13110/sys/prometheus`
-- Metrics: `http://localhost:13110/sys/metrics`
+- Health: `http://localhost:8081/sys/health`
+- Prometheus: `http://localhost:8081/sys/prometheus`
+- Metrics: `http://localhost:8081/sys/metrics`
 
 ## Этапы процесса очистки
 
